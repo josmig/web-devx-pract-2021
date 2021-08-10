@@ -31,7 +31,19 @@ const getSalario = (id) => {
 
 const id=3;
 
+//Promesas en cadena
+let nombre;
 getEmpleado(id)
+    .then(e => {
+      nombre = e;
+      return getSalario(id); //cuando anidamos promesas si o si se usa return
+    })
+    .then(s => console.log(`El empleado ${nombre}, tiene un salario de ${s}`))
+    .catch(err => console.log(err));
+
+
+// Hells
+/* getEmpleado(id)
     .then(empleado => {
         getSalario(id)
         .then(salario => {
@@ -39,8 +51,8 @@ getEmpleado(id)
         })
         .catch(err => console.log(err));
     })
-    .catch(err => console.log(err)); 
-
+    .catch(err => console.log(err));
+ */
 /* getEmpleado(id)
     .then(e => console.log(e))
     .catch( err => console.log(err));
